@@ -1,0 +1,1 @@
+Zksync testnet transaction failed or goes on pending due to gas optimization. Many of these transactions failed in the tress tress. I passed the transaction by giving 100x time gas value of the transaction. Please look into the matter.
