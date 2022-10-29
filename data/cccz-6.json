@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "cccz",
+  "risk": "2",
+  "title": "The owner can call removeRewardToken and then call recoverERC20 to rug the reward tokens",
+  "issueId": 6,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/6"
+}
