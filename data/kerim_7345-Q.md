@@ -1,0 +1,1 @@
+It shows incorrect prices in my transactions on Mute.Switch. While making testnet transactions, interesting figures occurred in my balance in my https://portal.zksync.io/ account. I also encountered negativity when printing NFT in Mintsquare. A few times my NFT mint transaction has been negative.
