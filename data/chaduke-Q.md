@@ -1,4 +1,12 @@
-1. Since all selectors in a facet will have the same freezability, according to https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/libraries/Diamond.sol#L211
+1. Since all selectors in a facet will have the same freezability, it will be much efficient and gas-saving to store the freezability of facet at the facet level instead of at the selector level. Current implementation at the selector level has the following limitations: 
+    a. Cannot get the freezability of a facet directly, has to get it through selector (see the current implementation of function *isFacetFreezable*: https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/facets/Getters.sol#L133
+ 
+   b. (insert anomaly) If there is no selector, a facet cannot be added.
+
+   c. (delete anomaly) When the last selector of a facet is deleted, the facet needs to be deleted as well. 
+
+   d. (update anomaly), if one needs to change the freezability of a facet, we need to do a loop to go though all the selector list to change all the freezalibilty of ALL selector, a gas-inefficient process. Meanwhile , if we need to replace a selector for an one-selector facet, we first need to delete the selector as well as the facet, and then add the facet back and add a new function, a very inefficient process as well. 
+
 It will be much better (save gas, easier to modify freezablity, and avoid insert/update/delete anomalies) to save the freezablity of selectors at the fact level instead of at the selector level. In particular, we can move  *bool isFreezable* from struct *SelectorToFacet* to *FacetToSelectors* as follows, so that the freezability of a facet is only saved once rather than multiple times an the need for check consistency in line 
 ```
     struct SelectorToFacet {
