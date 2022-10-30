@@ -13,3 +13,17 @@ It will be much better (save gas, easier to modify freezablity, and avoid insert
     }
 
 ```
+The SaveFacetIfNew() will be changed to the following with *isFreezable* added as the new argument:
+```
+   function _saveFacetIfNew(address _facet, bool _isFreezable) private {
+        DiamondStorage storage ds = getDiamondStorage();
+
+        uint256 selectorsLength = ds.facetToSelectors[_facet].selectors.length;
+        // If there are no selectors associated with facet then save facet as new one
+        if (selectorsLength == 0) {
+            ds.facetToSelectors[_facet].facetPosition = uint16(ds.facets.length);
+            ds.facets.push(_facet);
+            ds.facetToSelectors[_facet].isFreezable = _isFreezable;  // @audit: set the new _facet's freezability
+        }
+    }
+```
