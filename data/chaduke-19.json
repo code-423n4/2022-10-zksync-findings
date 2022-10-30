@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "chaduke",
+  "risk": "3",
+  "title": "The system might self-freeze the upgrade system by accidents",
+  "issueId": 19,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/19"
+}
