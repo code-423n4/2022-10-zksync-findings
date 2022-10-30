@@ -26,7 +26,10 @@ https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf
 4. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/libraries/Diamond.sol#L227
 cache ds.facetToSelectors as it is accessed twice
 
-5. 
+5. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/libraries/Diamond.sol#L277
+change *bytes memory _calldata* to *bytes calldata _calldata*
+
+
 
 
 
