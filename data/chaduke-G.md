@@ -1,3 +1,10 @@
+0. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/libraries/Diamond.sol#L211-L215
+We need to make sure all selectors in the same facet have the same freezablity, so we can store the *freezablity* at the facet level to save gas. In particular, we can move *bool isFreezable* from struct SelectorToFacet to struct FacetToSelectors. Then the following simpler consistency check can be used to replace L211-L215, which saves much gas:
+```
+require(_isSelectorFreezable == ds.facetToSelectors[_facet].isFreezable, "J1");
+
+```
+
 1. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/libraries/Diamond.sol#L89
 change
 ```
