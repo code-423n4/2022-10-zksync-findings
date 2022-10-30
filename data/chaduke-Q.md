@@ -47,3 +47,7 @@ in proposeDiamondCut(), one needs to make sure that the new proposal is indeed n
         emit DiamondCutProposal(_facetCuts, _initAddress);
     }
 ```
+
+3. Might be a good idea to change name "DiamondCutFacet* to *DiaomndCutPropsalFacet* to reflect what the contract supports since most fuctions in the contract also has the word "Proposal" in it. 
+
+
