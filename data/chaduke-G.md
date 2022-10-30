@@ -45,6 +45,22 @@ Move L59 to the first line, since we need to make sure the governor is executing
 7. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/facets/DiamondCut.sol#L112
 Move L112 to the first line, since we need to make sure the CouncilMember is approving the right proposal, so earlier check of this will save gas (short-circuit rule).
 
+8. _initializeDiamondCut() is called ONLY inside diamondCut() but will do NOTHING when 
+initAddress == address(0) && initCalldata.length = 0; so it might be a good idea to check this condition in the caller
+rather than in the callee to save gas
+
+change line 113 to:
+```
+if (_init == address(0)) {
+            require(_calldata.length == 0, "H"); 
+} 
+else    {
+           require(_calldata.length != 0, "I"); 
+           _initializeDiamondCut(initAddress, initCalldata);
+}
+
+```
+ 
 
 
 
