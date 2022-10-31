@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Bnke0x0",
+  "risk": "2",
+  "title": "Blocking of the VUSD withdrawals is possible if the reserve token doesn't support zero value transfers",
+  "issueId": 41,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/41"
+}
