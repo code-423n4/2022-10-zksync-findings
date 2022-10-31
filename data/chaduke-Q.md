@@ -83,7 +83,6 @@ https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/pro
 https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/transparent/TransparentUpgradeableProxy.sol
 
 6. It is a good practice to protect all proxies such that all facets can only be called through a proxy not within itself. this is achieved by adding a modifier proxyOnly to those the functions that need protection, for example, the *initialize* function in the *diamondInit* contract is not protected at all, it should be protected by the proxyOnly modifier. 
-
 See
 https://ethereum.stackexchange.com/questions/127189/an-onlyproxy-modifier-for-minimal-proxies-eip-1167
 ```
