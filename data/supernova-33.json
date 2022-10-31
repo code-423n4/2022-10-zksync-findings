@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "supernova",
+  "risk": "2",
+  "title": "Lack of Address(0) check in constructor ",
+  "issueId": 33,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/33"
+}
