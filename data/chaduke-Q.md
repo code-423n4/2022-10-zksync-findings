@@ -82,4 +82,14 @@ https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/pro
 https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/Proxy.sol
 https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/transparent/TransparentUpgradeableProxy.sol
 
+6. It is a good practice to protect all proxies such that all facets can only be called through a proxy not within itself. this is achieved by adding a modifier proxyOnly to those the functions that need protection. 
+See
+https://ethereum.stackexchange.com/questions/127189/an-onlyproxy-modifier-for-minimal-proxies-eip-1167
+```
+modifier onlyProxy() {
+    require(address(this) != __self, "Function must be called through delegatecall");
+    require(_getImplementation() == __self, "Function must be called through active proxy");
+    _;
+}
+```
 
