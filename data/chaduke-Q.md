@@ -87,8 +87,7 @@ See
 https://ethereum.stackexchange.com/questions/127189/an-onlyproxy-modifier-for-minimal-proxies-eip-1167
 ```
 modifier onlyProxy() {
-    require(address(this) != __self, "Function must be called through delegatecall");
-    require(_getImplementation() == __self, "Function must be called through active proxy");
+    require(address(this) == proxyAddress, "Function must be called through our proxy");
     _;
 }
 ```
