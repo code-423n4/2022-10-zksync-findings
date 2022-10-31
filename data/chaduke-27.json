@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "chaduke",
+  "risk": "3",
+  "title": "The governor can delegate call an arbitrary initAddress with arbitrary initCalldata to change the proxy state",
+  "issueId": 27,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/27"
+}
