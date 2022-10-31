@@ -59,3 +59,17 @@ in proposeDiamondCut(), one needs to make sure that the new proposal is indeed n
 3. Might be a good idea to change name "DiamondCutFacet* to *DiaomndCutPropsalFacet* to reflect what the contract supports since most fuctions in the contract also has the word "Proposal" in it. 
 
 
+4. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/facets/DiamondCut.sol#L22
+change
+```
+ function proposeDiamondCut(Diamond.FacetCut[] calldata _facetCuts, address _initAddress) external onlyGovernor {
+```
+to
+```
+function proposeDiamondCut(Diamond.DiamondCutData calldata _diamondCut) external onlyGovernor {
+```
+No need for argument _initAddress as it is already part of DiamondCutData. In this way, the function signature will also be 
+consistent with the following function:
+```
+function executeDiamondCutProposal(Diamond.DiamondCutData calldata _diamondCut) external onlyGovernor {
+```
