@@ -73,3 +73,13 @@ consistent with the following function:
 ```
 function executeDiamondCutProposal(Diamond.DiamondCutData calldata _diamondCut) external onlyGovernor {
 ```
+
+5. This project implements the transparent proxy pattern. However, the initialize-only-once semantics is not ensured by the current implementation. As a matter, the governor can propose diamoncut multiples times and execute the initialize function of each facet multiple times as well. There is no check that a facet has already been initialized earlier. According to OpenZeppelin,
+"Since proxied contracts do not make use of a constructor, it's common to move constructor logic to an external initializer function, usually called `initialize`. It then becomes necessary to protect this initializer function so it can only be called once.". 
+It is advised that the implementation should follow OpenZeppeline on this aspect, see below for details: 
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/utils/Initializable.sol
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/utils/UUPSUpgradeable.sol
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/Proxy.sol
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/transparent/TransparentUpgradeableProxy.sol
+
+
