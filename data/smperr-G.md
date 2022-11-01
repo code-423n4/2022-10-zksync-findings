@@ -1,0 +1,1 @@
+Switching the condition "!diamondStorage.isFrozen || !facet.isFreezable" to "!(diamondStorage.isFrozen && facet.isFreezable)" thanks to De Morgan's laws, will save a bit of gas.
