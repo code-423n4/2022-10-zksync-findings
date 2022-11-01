@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "DimitarDimitrov",
+  "risk": "2",
+  "title": "Emit of event should happen at the bottom of method",
+  "issueId": 47,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/47"
+}
