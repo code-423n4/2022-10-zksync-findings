@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "perseverancesuccess",
+  "risk": "3",
+  "title": "Unable to initialize again the L1EthBridge or L1ERC20Bridge if the L2 Transaction of deployment new L2Bridge Fails",
+  "issueId": 44,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/44"
+}
