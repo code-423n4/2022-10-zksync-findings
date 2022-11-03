@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "yurahod",
+  "risk": "2",
+  "title": "Solidity Modifier `nonReentrant` side effects in `ReentrancyGuard.sol`",
+  "issueId": 100,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/100"
+}
