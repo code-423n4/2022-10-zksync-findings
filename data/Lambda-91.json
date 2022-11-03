@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Lambda",
+  "risk": "2",
+  "title": "Executor: Blocks may be uncommittable after L1 unavailability",
+  "issueId": 91,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/91"
+}
