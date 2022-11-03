@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "yurahod",
+  "risk": "2",
+  "title": "Incorrect ERC20 Interface observed in `DummyERC20BytesTransferReturnValue.sol`",
+  "issueId": 102,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/102"
+}
