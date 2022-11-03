@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "jayjonah8",
+  "risk": "2",
+  "title": "No contract existence check on diamond proxy implementation ",
+  "issueId": 76,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/76"
+}
