@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Lambda",
+  "risk": "2",
+  "title": "Unbounded L2 Logs can lead to DoS",
+  "issueId": 94,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/94"
+}
