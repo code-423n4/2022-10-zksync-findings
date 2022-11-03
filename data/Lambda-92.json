@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Lambda",
+  "risk": "2",
+  "title": "Duplicating tokens after a chain fork possible",
+  "issueId": 92,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/92"
+}
