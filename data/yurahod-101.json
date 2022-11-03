@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "yurahod",
+  "risk": "2",
+  "title": "Solidity Modifier `reentrancyGuardInitializer` side effects in `ReentrancyGuard.sol`",
+  "issueId": 101,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/101"
+}
