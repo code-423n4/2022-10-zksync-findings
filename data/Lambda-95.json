@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Lambda",
+  "risk": "2",
+  "title": "Withdrawals impossible with rebasing tokens in certain scenarios",
+  "issueId": 95,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/95"
+}
