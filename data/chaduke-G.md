@@ -111,6 +111,41 @@ Move line 135 inside function _addOneFunction so that we don't have to call getD
 ```
 
 
+G11 https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/DiamondProxy.sol#L19-L54
+The following simplification to the fallback function of the DiamondProxy can greatly save gas as this is the gate of the whole system. If msg.data[:4] does not have 4 bytes for the selector, it will revert. 
+```
+   fallback() external payable {
+        Diamond.DiamondStorage storage diamondStorage = Diamond.getDiamondStorage();
+        Diamond.SelectorToFacet memory facet = diamondStorage.selectorToFacet[msg.data[:4]];
+        address facetAddress = facet.facetAddress;
+
+        require(facetAddress != address(0), "F"); // Proxy has no facet for this selector
+        require(!diamondStorage.isFrozen || !facet.isFreezable, "q1"); // Facet is frozen
+
+        assembly {
+            // The pointer to the free memory slot
+            let ptr := mload(0x40)
+            // Copy function signature and arguments from calldata at zero position into memory at pointer position
+            calldatacopy(ptr, 0, calldatasize())
+            // Delegatecall method of the implementation contract returns 0 on error
+            let result := delegatecall(gas(), facetAddress, ptr, calldatasize(), 0, 0)
+            // Get the size of the last return data
+            let size := returndatasize()
+            // Copy the size length of bytes from return data at zero position to pointer position
+            returndatacopy(ptr, 0, size)
+            // Depending on the result value
+            switch result
+            case 0 {
+                // End execution and revert state changes
+                revert(ptr, size)
+            }
+            default {
+                // Return data with length of size at pointers position
+                return(ptr, size)
+            }
+        }
+    }
+```
 
 
 
