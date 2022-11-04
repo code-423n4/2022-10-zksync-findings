@@ -42,7 +42,7 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L
 
 ### L-04 Missing checks for `address`(0x0) when assigning values to `address` state variables
 
-_There are **2** instances of this issue:_
+_There are **3** instances of this issue:_
 
 ```solidity
 File: /ethereum/contracts/zksync/facets/Getters.sol
@@ -54,6 +54,8 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync
 
 ```solidity
 File: /ethereum/contracts/zksync/facets/Governance.sol
+
+15: function setPendingGovernor(address _newPendingGovernor) external onlyGovernor {
 
 45: function setValidator(address _validator, bool _active) external onlyGovernor {
 ```
