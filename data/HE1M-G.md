@@ -1,0 +1,2 @@
+It is cheaper to use `call` instead of `staticcall` when getting `name`, `symbol`, and `decimals`:
+https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/bridge/L1ERC20Bridge.sol#L165-L167
