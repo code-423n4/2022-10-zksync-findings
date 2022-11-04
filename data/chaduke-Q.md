@@ -95,3 +95,8 @@ modifier onlyProxy() {
 The function implementation does not consider the case when _facet is not in the DiamondStorage. 
 
 8. Use and lock the most recent Solidity version 0.8.17.
+
+9. https://github.com/code-423n4/2022-10-zksync/blob/4db6c596931a291b17a4e0e2929adf810a4a0eed/ethereum/contracts/zksync/facets/DiamondCut.sol#L31
+The event should include the currentProposalID.
+
+ 
