@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Rolezn",
+  "risk": "2",
+  "title": "`msg.value` can be lost in `L1ERC20Bridge.sol#deposit()` when depositing",
+  "issueId": 112,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/112"
+}
