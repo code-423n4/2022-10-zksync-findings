@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Rolezn",
+  "risk": "2",
+  "title": "Prevent users from sending more than the required amount of ether in `L1EthBridge.sol#deposit` ",
+  "issueId": 114,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/114"
+}
