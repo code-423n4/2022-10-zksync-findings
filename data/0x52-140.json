@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0x52",
+  "risk": "2",
+  "title": "L1ERC20Bridge allows ERC721 tokens to be deposited, after which they are unrecoverable",
+  "issueId": 140,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/140"
+}
