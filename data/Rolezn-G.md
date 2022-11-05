@@ -3,59 +3,26 @@
 ### Gas Optimizations
 | |Issue|Contexts|
 |-|:-|:-:|
-| [GAS&#x2011;1](#GAS&#x2011;1) | Multiple Address Mappings Can Be Combined Into A Single Mapping Of An Address To A Struct, Where Appropriate | 5 |
-| [GAS&#x2011;2](#GAS&#x2011;2) | `++i`/`i++` Should Be `unchecked{++i}`/`unchecked{i++}` When It Is Not Possible For Them To Overflow, As Is The Case When Used In For- And While-loops | 4 |
-| [GAS&#x2011;3](#GAS&#x2011;3) | Splitting `require()` Statements That Use `&&` Saves Gas | 2 |
-| [GAS&#x2011;4](#GAS&#x2011;4) | `abi.encode()` is less efficient than `abi.encodepacked()` | 17 |
-| [GAS&#x2011;5](#GAS&#x2011;5) | Use calldata instead of memory for function parameters | 3 |
-| [GAS&#x2011;6](#GAS&#x2011;6) | Public Functions To External | 2 |
-| [GAS&#x2011;7](#GAS&#x2011;7) | Usage of `uints`/`ints` smaller than 32 bytes (256 bits) incurs overhead | 11 |
-| [GAS&#x2011;8](#GAS&#x2011;8) | Optimize names to save gas | All in-scope contracts | 
-| [GAS&#x2011;9](#GAS&#x2011;9) | Use `uint256(1)`/`uint256(2)` instead for `true` and `false` boolean states | 16 |
-| [GAS&#x2011;10](#GAS&#x2011;10) | Structs can be packed into fewer storage slots | 2 |
-| [GAS&#x2011;11](#GAS&#x2011;11) | Superfluous event fields | 2 |
-| [GAS&#x2011;12](#GAS&#x2011;12) | Do not calculate constants | 3 |
+| [GAS&#x2011;1](#GAS&#x2011;1) | `++i`/`i++` Should Be `unchecked{++i}`/`unchecked{i++}` When It Is Not Possible For Them To Overflow, As Is The Case When Used In For- And While-loops | 4 |
+| [GAS&#x2011;2](#GAS&#x2011;2) | Splitting `require()` Statements That Use `&&` Saves Gas | 2 |
+| [GAS&#x2011;3](#GAS&#x2011;3) | `abi.encode()` is less efficient than `abi.encodepacked()` | 17 |
+| [GAS&#x2011;4](#GAS&#x2011;4) | Use calldata instead of memory for function parameters | 3 |
+| [GAS&#x2011;5](#GAS&#x2011;5) | Public Functions To External | 2 |
+| [GAS&#x2011;6](#GAS&#x2011;6) | Usage of `uints`/`ints` smaller than 32 bytes (256 bits) incurs overhead | 11 |
+| [GAS&#x2011;7](#GAS&#x2011;7) | Optimize names to save gas | All in-scope contracts | 
+| [GAS&#x2011;8](#GAS&#x2011;8) | Use `uint256(1)`/`uint256(2)` instead for `true` and `false` boolean states | 16 |
+| [GAS&#x2011;9](#GAS&#x2011;9) | Structs can be packed into fewer storage slots | 2 |
+| [GAS&#x2011;10](#GAS&#x2011;10) | Superfluous event fields | 2 |
+| [GAS&#x2011;11](#GAS&#x2011;11) | Do not calculate constants | 3 |
 
 
 
-Total: 85 contexts over 12 issues
+Total: 80 contexts over 11 issues
 
 ## Gas Optimizations
 
-### <a href="#Summary">[GAS&#x2011;1]</a><a name="GAS&#x2011;1"> Multiple Address Mappings Can Be Combined Into A Single Mapping Of An Address To A Struct, Where Appropriate
 
-Saves a storage slot for the mapping. Depending on the circumstances and sizes of types, can avoid a Gsset (20000 gas) per mapping combined. Reads and subsequent writes can also be cheaper when a function requires both values and they both fit in the same storage slot.
-
-#### <ins>Proof Of Concept</ins>
-
-
-```
-26: mapping(address => bool) public isAccessPublic;
-30: mapping(address => mapping(address => mapping(bytes4 => bool))) public hasSpecialAccessToCall;
-```
-
-https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/common/AllowList.sol#L26-L30
-
-```
-22: mapping(address => bool) securityCouncilMembers;
-23: mapping(address => uint256) securityCouncilMemberLastApprovedProposalId;
-```
-
-https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync/Storage.sol#L22-L23
-
-```
-77: mapping(address => bool) validators;
-```
-
-https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync/Storage.sol#L77
-
-
-
-
-
-
-
-### <a href="#Summary">[GAS&#x2011;2]</a><a name="GAS&#x2011;2"> `++i`/`i++` Should Be `unchecked{++i}`/`unchecked{i++}` When It Is Not Possible For Them To Overflow, As Is The Case When Used In For- And While-loops
+### <a href="#Summary">[GAS&#x2011;1]</a><a name="GAS&#x2011;1"> `++i`/`i++` Should Be `unchecked{++i}`/`unchecked{i++}` When It Is Not Possible For Them To Overflow, As Is The Case When Used In For- And While-loops
 
 The unchecked keyword is new in solidity version 0.8.0, so this only applies to that version or higher, which these instances are. This saves 30-40 gas PER LOOP
 
@@ -90,7 +57,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync
 
 
 
-### <a href="#Summary">[GAS&#x2011;3]</a><a name="GAS&#x2011;3"> Splitting `require()` statements that use `&&` saves gas
+### <a href="#Summary">[GAS&#x2011;2]</a><a name="GAS&#x2011;2"> Splitting `require()` statements that use `&&` saves gas
 
 Instead of using operator `&&` on a single `require`. Using a two `require` can save more gas.
 
@@ -120,7 +87,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/common
 
 
 
-### <a href="#Summary">[GAS&#x2011;4]</a><a name="GAS&#x2011;4"> `abi.encode()` is less efficient than `abi.encodepacked()`
+### <a href="#Summary">[GAS&#x2011;3]</a><a name="GAS&#x2011;3"> `abi.encode()` is less efficient than `abi.encodepacked()`
 
 See for more information: https://github.com/ConnorBlockchain/Solidity-Encode-Gas-Comparison 
 
@@ -231,7 +198,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/zksync/contracts/bridge/L
 
 
 
-### <a href="#Summary">[GAS&#x2011;5]</a><a name="GAS&#x2011;5"> Use calldata instead of memory for function parameters
+### <a href="#Summary">[GAS&#x2011;4]</a><a name="GAS&#x2011;4"> Use calldata instead of memory for function parameters
 
 In some cases, having function arguments in calldata instead of
 memory is more optimal.
@@ -325,7 +292,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync
 
 
 
-### <a href="#Summary">[GAS&#x2011;6]</a><a name="GAS&#x2011;6"> Public Functions To External
+### <a href="#Summary">[GAS&#x2011;5]</a><a name="GAS&#x2011;5"> Public Functions To External
 
 The following functions could be set external to save gas and improve code quality.
 External call cost is less expensive than of public functions.
@@ -351,7 +318,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/zksync/contracts/bridge/L
 
 
 
-### <a href="#Summary">[GAS&#x2011;7]</a><a name="GAS&#x2011;7"> Usage of `uints`/`ints` smaller than 32 bytes (256 bits) incurs overhead
+### <a href="#Summary">[GAS&#x2011;6]</a><a name="GAS&#x2011;6"> Usage of `uints`/`ints` smaller than 32 bytes (256 bits) incurs overhead
 
 When using elements that are smaller than 32 bytes, your contract's gas usage may be higher. This is because the EVM operates on 32 bytes at a time. Therefore, if the element is smaller than that, the EVM must use more operations in order to reduce the size of the element from 32 bytes to the desired size.
 
@@ -438,7 +405,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/zksync/contracts/bridge/L
 
 
 
-### <a href="#Summary">[GAS&#x2011;8]</a><a name="GAS&#x2011;8"> Optimize names to save gas
+### <a href="#Summary">[GAS&#x2011;7]</a><a name="GAS&#x2011;7"> Optimize names to save gas
 
 `public`/`external` function names and `public` member variable names can be optimized to save gas. See [this](https://github.com/enzosv/solidity-optimize-name) link for an example of how it works. Method IDs that have two leading zero bytes can save **128 gas** each during deployment, and renaming functions to have lower method IDs will save **22 gas** per call, [per sorted position shifted](https://medium.com/joyso/solidity-how-does-function-name-affect-gas-consumption-in-smart-contract-47d270d8ac92)
 
@@ -451,7 +418,7 @@ Relevant to all in-scope contracts.
 
 
 
-### <a href="#Summary">[GAS&#x2011;9]</a><a name="GAS&#x2011;9"> Use `uint256(1)`/`uint256(2)` instead for `true` and `false` boolean states
+### <a href="#Summary">[GAS&#x2011;8]</a><a name="GAS&#x2011;8"> Use `uint256(1)`/`uint256(2)` instead for `true` and `false` boolean states
 
 If you don't use boolean for storage you will avoid Gwarmaccess 100 gas. In addition, state changes of boolean from `true` to `false` can cost up to ~20000 gas rather than `uint256(2)` to `uint256(1)` that would cost significantly less.
 
@@ -555,7 +522,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/zksync/contracts/bridge/L
 https://github.com/code-423n4/2022-10-zksync/tree/main/zksync/contracts/bridge/L2StandardERC20.sol#L88
 
 
-### <a href="#Summary">[GAS&#x2011;10]</a><a name="GAS&#x2011;10"> Structs can be packed into fewer storage slots
+### <a href="#Summary">[GAS&#x2011;9]</a><a name="GAS&#x2011;9"> Structs can be packed into fewer storage slots
 
 Each slot saved can avoid an extra Gsset (20000 gas) for the first setting of the struct. Subsequent reads as well as writes have smaller gas savings
 
@@ -639,7 +606,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync
 
 
 
-### <a href="#Summary">[GAS&#x2011;11]</a><a name="GAS&#x2011;11"> Superfluous event fields
+### <a href="#Summary">[GAS&#x2011;10]</a><a name="GAS&#x2011;10"> Superfluous event fields
 
 `block.number` and `block.timestamp` are added to the event information by default, so adding them manually will waste additional gas.
 
@@ -657,7 +624,7 @@ https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync
 https://github.com/code-423n4/2022-10-zksync/tree/main/ethereum/contracts/zksync/interfaces/IExecutor#L82
 
 
-### <a href="#Summary">[GAS&#x2011;12]</a><a name="GAS&#x2011;12"> Do not calculate constants
+### <a href="#Summary">[GAS&#x2011;11]</a><a name="GAS&#x2011;11"> Do not calculate constants
 
 Due to how constant variables are implemented (replacements at compile-time), an expression assigned to a constant variable is recomputed each time that the variable is used, which wastes some gas.
 
