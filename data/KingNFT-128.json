@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "KingNFT",
+  "risk": "2",
+  "title": "Reentrancy risk of L2ETHBridge",
+  "issueId": 128,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/128"
+}
