@@ -1,20 +1,20 @@
-1) 
-L2ContractHelper.sol
+L2ContractHelper.sol #L24
 
 library L2ContractHelper {
-
-bytes32 constant CREATE2_PREFIX = keccak256("zksyncCreate2");
-
-function sendMessageToL1(bytes memory _message) internal returns (bytes32) {
+    bytes32 constant CREATE2_PREFIX = keccak256("zksyncCreate2");
+ function sendMessageToL1(bytes memory _message) internal returns (bytes32) {
         return L2_MESSENGER.sendToL1(_message);
     }
 
-When we create constant we already know the string that we need hash. Instead of using keccaks26 function we can directly apply the hash value. So we can reduce some gas fee. since the hash string is static so we don't want use hash function. 
+FINDINGS :
 
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/L2ContractHelper.sol#L24
 
+For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function. If we apply hash value directly we can save our gas fee. The string is static so need to calculate using keccak256 functions. 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 2)
-
-L2StandardERC20.sol
+L2StandardERC20.sol #L43
 
 function bridgeInitialize(address _l1Address, bytes memory _data) external initializer {
 
@@ -30,10 +30,13 @@ function bridgeInitialize(address _l1Address, bytes memory _data) external initi
             (bytes, bytes, bytes)
         );
 
+FINDINGS : 
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2StandardERC20.sol#L43
 
 in bridgeInitialize function implementations  _data declared as memory 
 
-L2ERC20Bridge.sol
+L2ERC20Bridge.sol #L73
 
 function _deployL2Token(address _l1Token, bytes calldata _data) internal returns (address) {
         bytes32 salt = _getCreate2Salt(_l1Token);
@@ -44,4 +47,8 @@ function _deployL2Token(address _l1Token, bytes calldata _data) internal returns
         return address(l2Token);
     }
 
-when we calling bridgeInitialize function in L2ERC20Bridge.sol the parameter _data declared as calldata .  _data must be memory 
+FINDINGS :
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol#L73
+
+when calling bridgeInitialize function in L2ERC20Bridge.sol the function parameter _data declared as calldata  .  _data must be memory 
