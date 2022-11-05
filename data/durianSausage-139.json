@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "durianSausage",
+  "risk": "2",
+  "title": "M01: RETURN VALUES OF TRANSFER()/TRANSFERFROM() NOT CHECKED",
+  "issueId": 139,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/139"
+}
