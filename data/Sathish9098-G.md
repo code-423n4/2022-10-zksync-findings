@@ -14,6 +14,9 @@ L2ERC20Bridge.sol #L73
     }
 
 FINDINGS : 
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol#L73
+
 for _data we can use memory instead of calldata. So we can reduce gas fee . _data is temporary variable . We just pass _data value to bridgeInitialize function call 
 
 ..........................................................................................................................................
@@ -29,6 +32,8 @@ library L2ContractHelper {
     }
 
 FINDINGS :
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/L2ContractHelper.sol#L24
 
 For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function. If we apply hash value directly we can save our gas fee. The string is static so need to calculate using keccak256 functions. 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -61,5 +66,7 @@ function finalizeDeposit(
     }
 
 FINDINGS : 
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/L2ContractHelper.sol#L13
 
 Line13 For _data variable  WE CAN USE memory INSTEAD OF calldata . For using memory we can reduce our gas fee 
