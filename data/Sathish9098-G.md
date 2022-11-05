@@ -14,6 +14,8 @@ L2ERC20Bridge.sol
 for _data we can use memory instead of calldata. So we can reduce gas fee . _data is temporary variable . We just pass _data value to bridgeInitialize function call 
 
 ..........................................................................................................................................
+
+2
 L2ContractHelper.sol
 
 library L2ContractHelper {
