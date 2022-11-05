@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "imare",
+  "risk": "2",
+  "title": "``initialize`` functions of L1ERC20Bridge and L1EthBridge lacks access modifier",
+  "issueId": 136,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/136"
+}
