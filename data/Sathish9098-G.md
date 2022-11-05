@@ -26,3 +26,28 @@ library L2ContractHelper {
 
 For CREATE2_PREFIX we can direct assign hash value instead of Calling the keccak256 function. The string is static so we can directly apply hash value of this string .
 
+3) 
+L2ERC20Bridge.sol
+
+function finalizeDeposit(
+        address _l1Sender,
+        address _l2Receiver,
+        address _l1Token,
+        uint256 _amount,
+        bytes calldata _data
+    ) external override {
+        // Only L1 bridge counterpart can initiate and finalize the deposit
+        require(msg.sender == l1Bridge, "mq");
+ address expectedL2Token = l2TokenAddress(_l1Token);
+        if (l1TokenAddress[expectedL2Token] == address(0)) {
+            address deployedToken = _deployL2Token(_l1Token, _data);
+            require(deployedToken == expectedL2Token, "mt");
+            l1TokenAddress[expectedL2Token] = _l1Token;
+        }
+
+        IL2StandardToken(expectedL2Token).bridgeMint(_l2Receiver, _amount);
+
+        emit FinalizeDeposit(_l1Sender, _l2Receiver, expectedL2Token, _amount);
+    }
+
+FOR _data WE CAN USE memory INSTEAD OF calldata 
