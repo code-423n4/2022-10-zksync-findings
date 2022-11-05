@@ -36,8 +36,6 @@ Method: setBatchPermissionToCall
 
 PoC: run `yarn test --grep "Allow list tests"` before and after applying the patch.
 
-Proposed mitigation:
-
 ```diff
 diff --git a/ethereum/contracts/common/AllowList.sol b/ethereum/contracts/common/AllowList.sol
 index c6c0e14..03e5b53 100644
