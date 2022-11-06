@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "ETH Fee when user performing cross-chain transfer can be locked.",
+  "issueId": 169,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/169"
+}
