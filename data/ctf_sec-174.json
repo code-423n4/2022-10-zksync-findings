@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ctf_sec",
+  "risk": "2",
+  "title": "Mailbox#requestL2Transaction caller can intentionally set very low _ergsLimit to create spam cross-chain request that is guranteed to revert.",
+  "issueId": 174,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/174"
+}
