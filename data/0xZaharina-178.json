@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xZaharina",
+  "risk": "3",
+  "title": "Double spending risk in L1 Bridge Contract",
+  "issueId": 178,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/178"
+}
