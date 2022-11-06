@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ctf_sec",
+  "risk": "2",
+  "title": "When user deposit in L1ETHBridge.sol, they can avoid paying the fee by making msg.value == amount",
+  "issueId": 172,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/172"
+}
