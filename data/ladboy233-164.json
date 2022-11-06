@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "DiamondCut.sol#_resetProposal does not properly clean securityCouncilMemberLastApprovedProposalId, which makes Getter.sol#getSecurityCouncilMemberLastApprovedProposalId return very outdated data.",
+  "issueId": 164,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/164"
+}
