@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ctf_sec",
+  "risk": "2",
+  "title": "User's ETH may be locked when calling _withdrawFunds(_depositSender, amount) in L1ETHBridge.sol if the underlying contract is not capable of receiving ETH.",
+  "issueId": 171,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/171"
+}
