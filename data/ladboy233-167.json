@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "Governor admin can rug the protocol by proposing and executing malicious proposal by himself after the timelock",
+  "issueId": 167,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/167"
+}
