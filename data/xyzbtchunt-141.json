@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "xyzbtchunt",
+  "risk": "2",
+  "title": "Variable `message ` does not return value To L1 Bridge",
+  "issueId": 141,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/141"
+}
