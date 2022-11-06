@@ -1,3 +1,4 @@
+Report 1
 Use a more recent version of solidity Compiler
 Use a solidity version of at least 0.8.2 to get compiler automatic inlining
 Use a solidity version of at least 0.8.3 to get better struct packing and cheaper multiple storage reads
@@ -42,3 +43,14 @@ Use a solidity version of at least 0.8.10 to have external calls skip contract e
 
 Reference
 https://github.com/ethereum/solidity/blob/develop/Changelog.md
+
+
+
+Report 2 
+
+Using calldata instead of memory for read-only arguments in external functions saves gas
+
+POC
+1. https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/bridge/L1ERC20Bridge.sol#L234
+
+2. 
