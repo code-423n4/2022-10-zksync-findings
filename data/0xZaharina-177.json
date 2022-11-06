@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xZaharina",
+  "risk": "2",
+  "title": "Incompatibility with rebasing ERC20 token in L1ERC20Bridge.sol",
+  "issueId": 177,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/177"
+}
