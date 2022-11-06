@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "hihen",
+  "risk": "3",
+  "title": "Operations in GovernanceFacet is not secure enough for a zkr-layer2 project",
+  "issueId": 144,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/144"
+}
