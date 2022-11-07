@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "datapunk",
+  "risk": "3",
+  "title": "Bridge should not allow ERC20 tokens with double-entry point",
+  "issueId": 200,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/200"
+}
