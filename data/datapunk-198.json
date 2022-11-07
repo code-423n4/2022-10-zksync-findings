@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "datapunk",
+  "risk": "3",
+  "title": "Bridge should not allow ERC20 tokens with Fee on Transfer feature",
+  "issueId": 198,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/198"
+}
