@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "datapunk",
+  "risk": "2",
+  "title": "No incentive mechanism for allowed senders to call `finalizeWithdrawal` on behalf of withdrawers.",
+  "issueId": 208,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/208"
+}
