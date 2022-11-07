@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "joestakey",
+  "risk": "2",
+  "title": "`msg.value` is currently lost in `L1ERC20Bridge` and `L1EthBridge` `deposit` functions",
+  "issueId": 196,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/196"
+}
