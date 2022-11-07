@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "datapunk",
+  "risk": "2",
+  "title": " Doc is not 100% accurate about Mailbox not holding eth and there is currently no way to extract it.",
+  "issueId": 207,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/207"
+}
