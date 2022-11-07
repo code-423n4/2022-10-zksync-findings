@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "Governor admin can set verifier address and verify params to a wrong or invalid address intentionally",
+  "issueId": 181,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/181"
+}
