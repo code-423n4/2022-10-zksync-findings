@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xSmartContract",
+  "risk": "3",
+  "title": "User loses funds if `_amount` and msg.value differ in `deposit` function",
+  "issueId": 205,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/205"
+}
