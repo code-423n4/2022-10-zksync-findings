@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xZaharina",
+  "risk": "2",
+  "title": "Validator may refuse to process the cross-chain transaction.",
+  "issueId": 180,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/180"
+}
