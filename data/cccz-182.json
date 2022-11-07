@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "cccz",
+  "risk": "2",
+  "title": "L2ETHBridge.l2TokenAddress returns CONVENTIONAL_ETH_ADDRESS instead of ETH_TOKEN_SYSTEM_CONTRACT_ADDRESS",
+  "issueId": 182,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/182"
+}
