@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xSmartContract",
+  "risk": "2",
+  "title": "A single point of failure is not acceptable for this project",
+  "issueId": 201,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/201"
+}
