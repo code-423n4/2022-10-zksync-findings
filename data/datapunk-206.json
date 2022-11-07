@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "datapunk",
+  "risk": "2",
+  "title": "Changing functions in `L2ContractHelper` library or constants in `Config.sol` requires the redeployment of multiple facets to keep them consistent",
+  "issueId": 206,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/206"
+}
