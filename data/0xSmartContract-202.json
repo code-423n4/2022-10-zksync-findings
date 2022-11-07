@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "0xSmartContract",
+  "risk": "2",
+  "title": "Cross-chain replay attacks are possible with `create2()`",
+  "issueId": 202,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/202"
+}
