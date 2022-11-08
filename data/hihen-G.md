@@ -21,4 +21,19 @@
     ```
     require(currentTotalBlocksVerified <= s.totalBlocksCommitted, "q");
     ```
+* Splitting `require()` statements that use `&&` saves gas
+  - [AllowList.sol#L96-L101](https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/common/AllowList.sol#L96-L101)
+    ```
+    require(
+      callersLength == _targets.length &&
+          callersLength == _functionSigs.length &&
+          callersLength == _enables.length,
+      "yw"
+    ); // The size of arrays should be equal
+    ```
+  - [L2ContractHelper.sol#L65](https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/common/L2ContractHelper.sol#L65)
+    ```
+    require(version == 1 && _bytecodeHash[1] == bytes1(0), "zf"); // Incorrectly formatted bytecodeHash
+    ```
+
 
