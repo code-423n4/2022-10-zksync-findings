@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "HE1M",
+  "risk": "2",
+  "title": "Special tokens should not be able to be bridged",
+  "issueId": 229,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/229"
+}
