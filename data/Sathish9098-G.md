@@ -23,7 +23,11 @@ for _data we can use memory instead of calldata. So we can reduce gas fee . _dat
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-2. For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function
+2. 
+
+If You know what data to hash, there is no need to consume more computational power to hash it using keccak256 , you’ll end up consuming
+2x amount of gas.
+For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function
 
 L2ContractHelper.sol #L24
 
