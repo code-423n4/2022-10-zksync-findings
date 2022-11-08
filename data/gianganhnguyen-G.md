@@ -69,7 +69,7 @@ to:
       unchecked { ++i; }  
     }
 
-# 4. [G-4] Variables: Using `calldata` instead of `memory` for read-only arguments in `external` functions saves gas
+# 4. [G-4] Variables: Cache read variables in memory will save gas
 
 I suggest using `memory` instead of `storage` when declare variable here:
 
