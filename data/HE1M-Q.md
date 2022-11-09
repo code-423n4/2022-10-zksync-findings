@@ -18,3 +18,8 @@ Better to have config facet, in case some update is needed in the `config.sol`. 
 ### No. 4
 `L2_LOG_BYTES` is not correct, it should be `L2_TO_L1_LOG_SERIALIZE_SIZE`
 https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/zksync/Config.sol#L19
+
+### No. 5
+It is not needed to have modifier `senderCanCallFunction` for the function `deposit` in both `L1ERC20Bridge` and `L1ETHBridge`, because they call the function `requestL2Transaction` in the `MailBox` that has already such modifier.
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/bridge/L1EthBridge.sol#L92
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/zksync/facets/Mailbox.sol#L112
