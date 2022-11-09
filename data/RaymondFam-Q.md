@@ -45,6 +45,7 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/interfaces/IExecutor.sol#L9
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/interfaces/IExecutor.sol#L29
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/interfaces/IMailbox.sol#L14-L17
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/ReentrancyGuard.sol#L27-L29
 
 ## Function Calls in Loop Could Lead to Denial of Service
 Function calls made in unbounded loop are error-prone with potential resource exhaustion as it can trap the contract due to the gas limitations or failed transactions. Here are some of the instances entailed:
@@ -171,3 +172,16 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common
 There is no measure to calculate/estimate the gas needed when bridging tokens via `deposit()`. Although this may have been taken care of at the frontend UI, there will be users interacting elsewhere, e.g. etherscan or contract interaction. With insufficient ETH sent in to cover the gas needed for the bridge transaction, the call could easily revert other than the wasting of gas incurred. 
 
 Consider implementing a small code block that will both have the `expectedEth` calculated and ensure `msg.value >= expectedEth`. It should be a standard protocol relaxing the gas requirement in order to prevent rejection of outbound requests when more `msg.value` than needed is sent. That said, it is expected that the excess amount of ETH will be refunded by the protocol to the credit-back address (in this case, the original caller).
+
+## More Robust Measure for Owner Assignment at the Constructor
+It is good that a zero address check is implemented at the constructor of `AllowList.sol`. However, much as the concern for assigning a wrong non-zero address in ownership transfer by having a two step function implemented, the same mistake could have occurred when deploying the contract. As such, the zero address check may be removed, and instead, have `msg.sender` assigned to the `owner` who may then do a proper two step ownership transfer if need be. 
+
+The constructor may be refactored as follows:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/AllowList.sol#L32-L35
+
+```
+    constructor() {
+        owner = msg.sender;
+    }
+```
