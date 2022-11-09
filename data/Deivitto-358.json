@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Deivitto",
+  "risk": "2",
+  "title": "Upgradeable contract is missing a __gap[50] storage variable to allow for new storage variables in later versions",
+  "issueId": 358,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/358"
+}
