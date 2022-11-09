@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Soosh",
+  "risk": "2",
+  "title": "L1ETHBridge `deposit()` does not check `amount > 0`",
+  "issueId": 258,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/258"
+}
