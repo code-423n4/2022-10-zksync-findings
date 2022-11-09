@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Sathish9098",
+  "risk": "2",
+  "title": "WHEN EVER CALLING bridgeMint OR bridgeBurn FUNCTIONS NEED TO CHECK THE STATUS OF THE TRANSACTIONS",
+  "issueId": 293,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/293"
+}
