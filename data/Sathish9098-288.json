@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Sathish9098",
+  "risk": "2",
+  "title": "1) THERE IS CONFLICT IN REQUIRE STATMENT OF require (msg.sender == l1Bridge, \"mq\"). IN bridgeMint IMPLEMENTATION FUNCTION CHECKS  require(msg.sender == l2Bridge). ",
+  "issueId": 288,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/288"
+}
