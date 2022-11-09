@@ -1,1 +1,3 @@
-Switching the condition "!diamondStorage.isFrozen || !facet.isFreezable" to "!(diamondStorage.isFrozen && facet.isFreezable)" thanks to De Morgan's laws, will save a bit of gas.
+1. Switching the condition ``!diamondStorage.isFrozen || !facet.isFreezable`` to ``!(diamondStorage.isFrozen && facet.isFreezable)`` thanks to De Morgan's laws, will save a bit of gas.
+
+2. Some of the operations can be carried out in ``unchecked`` blocks. An example is in the loop of ``Executor._processL2Logs``, where the operations ``i+x`` will likely never overflow because ``emittedL2Logs.length`` will never be close to ``type(uint256).max``.
