@@ -8,4 +8,9 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L153
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L173
 
+3. <x> += <y> costs more gas than <x> = <x> + <y>
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/facets/DiamondCut.sol#L29
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/TranscriptLib.sol#L44
+
+
 
