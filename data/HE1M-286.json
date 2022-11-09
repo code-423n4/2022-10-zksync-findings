@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "HE1M",
+  "risk": "2",
+  "title": "It is not possible to allow a public permission access to a function while removing the permission from another function in the same target",
+  "issueId": 286,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/286"
+}
