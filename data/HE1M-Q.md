@@ -28,3 +28,11 @@ https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665ee
 For each deposit of an ERC20 token, the information of the token is read and packed and sent to L2. Even if this token is used before for deposit, again this information is sent to L2, which is waste of gas.
 https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/bridge/L1ERC20Bridge.sol#L164-L169
 https://github.com/code-423n4/2022-10-zksync/blob/456078b53a6d09636b84522ac8f3e8049e4e3af5/ethereum/contracts/bridge/L1ERC20Bridge.sol#L155
+
+### No. 7
+When a block is committed, its hash will be stored in `storedBlockHashes`:
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/zksync/facets/Executor.sol#L164
+If this block is reverted, it is not removed from `storedBlockHashes`:
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/zksync/facets/Executor.sol#L336
+The vulnerability is that in the `GettersFacet`, the function `storedBlockHash(...)` will return the hash of a reverted block if this block number is given as its parameter, while it should return 0.
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/zksync/facets/Getters.sol#L86
