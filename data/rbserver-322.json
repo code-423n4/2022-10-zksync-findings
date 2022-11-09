@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "Name or symbol is missing on L2 for token that has `bytes32` name or symbol on L1",
+  "issueId": 322,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/322"
+}
