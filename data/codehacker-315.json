@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "codehacker",
+  "risk": "2",
+  "title": "No commitment to data passed as input to the init contract during the execution of the diamond cut proposal",
+  "issueId": 315,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/315"
+}
