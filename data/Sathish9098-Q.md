@@ -11,3 +11,7 @@ File :   2022-10-zksync/zksync/contracts/bridge/L2ERC20Bridge.sol
 70 :     function _deployL2Token(address _l1Token, bytes calldata _data) internal returns (address) {
 
 77 :      L2StandardERC20(address(l2Token)).bridgeInitialize(_l1Token, _data);
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+2)   uint256 public totalSupply; AND mapping(address => uint256) public balanceOf; DECLARED BUT NOT USED ANY PLACES. CAN REMOVE THE VARIABLES IF NOT USED.
