@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Deivitto",
+  "risk": "2",
+  "title": "Missing checks on `initialize` affects getting `l2TokenAddress` and `_governance`",
+  "issueId": 359,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/359"
+}
