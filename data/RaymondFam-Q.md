@@ -196,3 +196,8 @@ Consider adding a storage gap at the end of an upgradeable contract, just in cas
 
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1EthBridge.sol
+
+## Use `abi.encode()` on Dynamic Types When Passing Result to `keccak256()`
+Use `abi.encode()` instead of `abi.encodePacked()` which will pad items to 32 bytes to prevent hash collisions. Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-zksync/blob/358f38736351a8a27e325dfcb665eeba5ec02bd5/ethereum/contracts/zksync/facets/Mailbox.sol#L58-L59
