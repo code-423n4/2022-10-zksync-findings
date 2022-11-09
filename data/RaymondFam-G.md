@@ -197,3 +197,37 @@ Similarly, `_getERC20Getters()` may be embedded inline with `_getDepositL2Callda
 
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L155
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L164
+
+## Split Require Statements Using &&
+Instead of using the `&&` operator in a single require statement to check multiple conditions, using multiple require statements with 1 condition per require statement will save 3 GAS per `&&`. Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/AllowList.sol#L97-L101
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/L2ContractHelper.sol#L65
+
+## Private/Internal Function Embedded Modifier Reduces Contract Size
+Consider having the logic of a modifier embedded through a private (doesn't matter whether or not the contract entails any child contracts since the private visibility saves even more gas on function calls than the internal visibility) function to reduce contract size if need be. For instance, the following instance of modifier may be rewritten as follows:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/ReentrancyGuard.sol#L38-L41
+
+```
+    function _reentrancyGuardInitializer() private view {
+        _initializeReentrancyGuard();
+    }
+
+    modifier reentrancyGuardInitializer() {
+        _reentrancyGuardInitializer();
+        _;
+    }
+```
+## `||` Costs Less Gas Than Its Equivalent `&&`
+Rule of thumb: `(x && y)` is `(!(!x || !y))`
+
+Even with the 10k Optimizer enabled: `||`, OR conditions cost less than their equivalent `&&`, AND conditions.
+
+As an example, the following code line may be rewritten as:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/L2ContractHelper.sol#L65
+
+```
+        require(!(version != 1 || _bytecodeHash[1] != bytes1(0)), "zf");
+```
