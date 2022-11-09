@@ -78,7 +78,9 @@ It is recommended importing the OpenZeppelin contracts instead of re-implementin
 [`ReentrancyGuard.sol`](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/common/ReentrancyGuard.sol)
 
 ## L1BRIDGE COULD BE BRICKED
-When unlocking funds for the valid withdraw request from L2, there is no added measures to detect any malicious attacks that could drain the contract balance if the attacker managed to dodge the verification system. An active contract balance check should be in place and pause `finalizeWithdrawal()` if a drastic drop in contract balance was detected.
+When unlocking funds for the valid withdraw request from L2, there is no added measures to detect any malicious attacks that could drain the contract balance if the attacker managed to dodge the verification system. Hackers could exploit via numerous attacking surfaces using low level proofs to hijack the tree system to receive token/ETH from L1 simply because there is a long enough delay to synchronize states on chain. An active contract balance check should be in place and pause `finalizeWithdrawal()` if a drastic drop in contract balance was detected.
+
+It would be too late when `safeTransfer` or `_withdrawFunds()` reverted considering all funds would have been drained. This is a prevailing issue in cross-chain non-atomic transfer.
 
 ## DOS ON UNBOUNDED LOOP
 Unbounded loop could lead to OOG (Out of Gas) denying the users' of needed services. Here are some instances found.
@@ -86,3 +88,24 @@ Unbounded loop could lead to OOG (Out of Gas) denying the users' of needed servi
 [Line 94](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L94)
 [Line 173](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L173)
 
+## TYPO ERRORS
+[Line 36](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/Storage.sol#L36)
+
+```
+@ addreses should be corrected to addresses
+/// @dev The sender is an `address` type, although we are using `uint256` for addreses in `L2CanonicalTransaction`.
+```
+[Line 63](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L63)
+
+```
+@ dellegate should be corrected to delegate     
+/// @param initAddress The address that's dellegate called after setting up new facet changes
+```
+[Line 7](https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/DiamondProxy.sol#L7)
+
+```
+@ Cotract should be corrected to Contract
+/// @title Diamond Proxy Cotract (EIP-2535)
+```
+## STORAGE GAP FOR UPGRADEABLE CONTRACTS
+Consider adding a storage gap at the end of each upgradeable contract (Openzeppelin associated). In the event some contracts needed to inherit from them, there would not be an issue shifting down of storage in the inheritance chain. Generally, storage gaps are a novel way of reserving storage slots in a base contract, allowing future versions of that contract to use up those slots without affecting the storage layout of child contracts. If not, the variable in the child contract might be overridden whenever new variables are added to it. This could have unintended and vulnerable consequences to the child contracts.
