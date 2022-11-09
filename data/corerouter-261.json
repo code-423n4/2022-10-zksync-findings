@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "corerouter",
+  "risk": "2",
+  "title": "L1ERC20Bridge does not have an emergency stop mechanism to pause the bridge in case of any problems found.",
+  "issueId": 261,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/261"
+}
