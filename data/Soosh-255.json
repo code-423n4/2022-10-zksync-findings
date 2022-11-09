@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Soosh",
+  "risk": "3",
+  "title": "Can crash the zkSync operator by filling L2->L1 logs merkle tree leaves, causing DOS",
+  "issueId": 255,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/255"
+}
