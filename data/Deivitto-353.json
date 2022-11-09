@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "Deivitto",
+  "risk": "2",
+  "title": "No sanity check on `_l1Token` can lead into a bad deployment on the bridge",
+  "issueId": 353,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/353"
+}
