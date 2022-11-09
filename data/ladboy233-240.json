@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "Validator can revert block at no cost.",
+  "issueId": 240,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/240"
+}
