@@ -119,7 +119,7 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge
 https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/interfaces/IDiamondCut.sol
 
 ```
-20:  event DiamondCutProposal(Diamond.FacetCut[] _facetCuts, address _initAddress); //@audit-issue MISSING INDEXED FIELDS
+20:  event DiamondCutProposal(Diamond.FacetCut[] _facetCuts, address _initAddress); 
 22: event DiamondCutProposalCancelation(uint256 currentProposalId, bytes32 indexed proposedDiamondCutHash);
 24: event DiamondCutProposalExecution(Diamond.DiamondCutData _diamondCut);
 28: event Unfreeze(uint256 lastDiamondFreezeTimestamp);
