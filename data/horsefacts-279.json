@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "horsefacts",
+  "risk": "2",
+  "title": "`L1EthBridge`: `zkSyncFee` is locked in `DiamondProxy`",
+  "issueId": 279,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/279"
+}
