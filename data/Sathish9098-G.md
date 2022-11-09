@@ -1,131 +1,42 @@
-L2ERC20Bridge.sol #L73   
 
-1)   for _data we can use memory instead of calldata
 
- /// @dev Deploys and initialize the L2 token for the L1 counterpart
+1)  FOR _data PARAMETER CAN REPLACE calldata WITH memory . _data IS TEMPRORARY VARIABLE. IF WE USING MEMORY CAN REDUCE GAS FEE
 
- function _deployL2Token(address _l1Token, bytes calldata _data) internal returns (address) {
+Same problem in 3 instances.
 
-        bytes32 salt = _getCreate2Salt(_l1Token);
-        BeaconProxy l2Token = new BeaconProxy{salt: salt}(address(l2TokenFactory), "");
-        L2StandardERC20(address(l2Token)).bridgeInitialize(_l1Token, _data);
+File :    2022-10-zksync/zksync/contracts/bridge/L2ERC20Bridge.sol
 
-        return address(l2Token);
-    }
+73 :     function _deployL2Token(address _l1Token, bytes calldata _data) internal returns (address) {
 
-FINDINGS : 
+File :   2022-10-zksync/zksync/contracts/bridge/L2ERC20Bridge.sol
 
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol#L73
+55:      bytes calldata _data
 
-SOLUTIONS:
+File :   2022-10-zksync/zksync/contracts/L2ContractHelper.sol
 
-for _data we can use memory instead of calldata. So we can reduce gas fee . _data is temporary variable . We just pass _data value to bridgeInitialize function call 
+13 :     bytes calldata _input
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-2. 
+2.  FOR CREATE2_PREFIX CAN ASSGING HASH VALUE DIRECTLY. THE INPUT STRING  "zksyncCreate2" IS STATIC. SO DON'T WANT TO USE keccak256 FUNCTION. CAN REDUCE THE MORE GAS FEE. 
 
-If You know what data to hash, there is no need to consume more computational power to hash it using keccak256 , you’ll end up consuming
-2x amount of gas.
-For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function
+File : 2022-10-zksync/zksync/contracts/L2ContractHelper.sol
 
-L2ContractHelper.sol #L24
-
-library L2ContractHelper {
-    bytes32 constant CREATE2_PREFIX = keccak256("zksyncCreate2");
- function sendMessageToL1(bytes memory _message) internal returns (bytes32) {
-        return L2_MESSENGER.sendToL1(_message);
-    }
-
-FINDINGS :
-
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/L2ContractHelper.sol#L24
-
-SOLUTIONS:
-
-For CREATE2_PREFIX we can directly assign hash value instead of Calling the keccak256 function. If we apply hash value directly we can save our gas fee. The string is static so need to calculate using keccak256 functions. 
-----------------------------------------------------------------------------------------------------------------------------
-3)   For _data variable  WE CAN USE memory INSTEAD OF calldata
-
-L2ERC20Bridge.sol #L13
-
-function finalizeDeposit(
-        address _l1Sender,
-        address _l2Receiver,
-        address _l1Token,
-        uint256 _amount,
-
-        bytes calldata _data
-
-
-    ) external override {
-        // Only L1 bridge counterpart can initiate and finalize the deposit
-        require(msg.sender == l1Bridge, "mq");
- address expectedL2Token = l2TokenAddress(_l1Token);
-        if (l1TokenAddress[expectedL2Token] == address(0)) {
-            address deployedToken = _deployL2Token(_l1Token, _data);
-            require(deployedToken == expectedL2Token, "mt");
-            l1TokenAddress[expectedL2Token] = _l1Token;
-        }
-
-        IL2StandardToken(expectedL2Token).bridgeMint(_l2Receiver, _amount);
-
-        emit FinalizeDeposit(_l1Sender, _l2Receiver, expectedL2Token, _amount);
-    }
-
-FINDINGS : 
-
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/L2ContractHelper.sol#L13
-
-SOLUTIONS:
-
-Line13 For _data variable  WE CAN USE memory INSTEAD OF calldata . For using memory we can reduce our gas fee 
-
+24:  bytes32 constant CREATE2_PREFIX = keccak256("zksyncCreate2");
+ 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
-4)   CONVENTIONAL_ETH_ADDRESS needs to CATCHED
+3)   CONVENTIONAL_ETH_ADDRESS STATE VARIABLE CAN BE CATCHED . SO CAN AVOID STATE VARIABLES ACCESS. CAN REDUCE THE GAS FEE. 
 
-L2ETHBridge.sol #L50, #L54 #64 #70
+Same problem in 4 instances 
 
-function finalizeDeposit(
-        address _l1Sender,
-        address _l2Receiver,
-        address _l1Token,
-        uint256 _amount,
-        bytes calldata // _data
-    ) external {
-        // Only L1 bridge counterpart can initiate and finalize the deposit
-        require(msg.sender == l1Bridge, "ni");
-        require(_l1Token == CONVENTIONAL_ETH_ADDRESS);
+File : 2022-10-zksync/zksync/contracts/bridge/L2ETHBridge.sol
 
-        ETH_TOKEN_SYSTEM_CONTRACT_ADDRESS.bridgeMint(_l2Receiver, _amount);
+50 :    require(_l1Token == CONVENTIONAL_ETH_ADDRESS);
 
-        emit FinalizeDeposit(_l1Sender, _l2Receiver, CONVENTIONAL_ETH_ADDRESS, _amount);
-    }
+54 :    emit FinalizeDeposit(_l1Sender, _l2Receiver, CONVENTIONAL_ETH_ADDRESS, _amount);
 
-    /// @dev Initiate withdrawal ethers from L2 contract to the L1
-    /// NOTE: In order to get funds on L1, receiver should finalise deposit on L1 counterpart
-    function withdraw(
-        address _l1Receiver,
-        address _l2Token,
-        uint256 _amount
-    ) external override {
-        require(_l2Token == CONVENTIONAL_ETH_ADDRESS, "zn");
+64:     require(_l2Token == CONVENTIONAL_ETH_ADDRESS, "zn");
 
-        ETH_TOKEN_SYSTEM_CONTRACT_ADDRESS.bridgeBurn(msg.sender, _amount);
-        bytes memory message = _getL1WithdrawMessage(_l1Receiver, _amount);
-        L2ContractHelper.sendMessageToL1(message);
+70 :    emit WithdrawalInitiated(msg.sender, _l1Receiver, CONVENTIONAL_ETH_ADDRESS, _amount);
 
-        emit WithdrawalInitiated(msg.sender, _l1Receiver, CONVENTIONAL_ETH_ADDRESS, _amount);
-    }
-
-FINDINGS : 
-
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ETHBridge.sol#L50
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ETHBridge.sol#L54
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ETHBridge.sol#L54
-https://github.com/code-423n4/2022-10-zksync/blob/main/zksync/contracts/bridge/L2ETHBridge.sol#L54
-
-SOLUTION:
-
-CONVENTIONAL_ETH_ADDRESS needs to CATCHED . finalizeDeposit and Withdraw Functions access the CONVENTIONAL_ETH_ADDRESS state variable in multiple times. It would cost more gas fee in every call  . Instead of direct call we can catch in local .
