@@ -14,4 +14,4 @@ File :   2022-10-zksync/zksync/contracts/bridge/L2ERC20Bridge.sol
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-2)   uint256 public totalSupply; AND mapping(address => uint256) public balanceOf; DECLARED BUT NOT USED ANY PLACES. CAN REMOVE THE VARIABLES IF NOT USED.
+2)   uint256 public totalSupply; AND mapping(address => uint256) public balanceOf; DECLARED BUT NOT USED ANY PLACES. POSSIBLE TO REMOVE THE VARIABLES IF NOT USED.
