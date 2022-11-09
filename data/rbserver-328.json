@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "rbserver",
+  "risk": "3",
+  "title": "Extra ETH amount sent to mailbox that is not used for base cost of requesting execution of an L2 transaction from L1 is locked in mailbox",
+  "issueId": 328,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/328"
+}
