@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "HE1M",
+  "risk": "2",
+  "title": "Missing removing the olod permission when giving public access permission",
+  "issueId": 284,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/284"
+}
