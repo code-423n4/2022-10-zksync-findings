@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "hansfriese",
+  "risk": "2",
+  "title": "`DiamondCutFacet.executeDiamondCutProposal()` can be delayed because wrong event is emitted",
+  "issueId": 310,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/310"
+}
