@@ -117,6 +117,14 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync
 ```
         s.diamondCutStorage.currentProposalId =  s.diamondCutStorage.currentProposalId + 1;
 ```
+The following line of code should logically be refactored as:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Merkle.sol#L34
+
+```
+            _index = _index / 2;
+```
+
 ## `uint256` Can be Cheaper Than `uint8` and Other Unsigned Integer Type of Smaller Bit Size
 When dealing with function arguments or memory values, there is no inherent benefit because the compiler does not pack these values. Your contract’s gas usage may be higher because the EVM operates on 32 bytes at a time. Therefore, if the element is smaller than that, the EVM must use more operations in order to reduce the size of the element from 32 bytes to the desired size. The EVM needs to properly enforce the limits of this smaller type.
 
@@ -158,3 +166,34 @@ https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync
             ) & INPUT_MASK;
     }
 ```
+## Ternary Over `if ... else`
+Using ternary operator instead of the if else statement saves gas. For instance the following code block may be rewritten as:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/zksync/libraries/Diamond.sol#L278-L289
+
+```
+    _init == address(0)
+        ? {
+            require(_calldata.length == 0, "H"); // Non-empty calldata for zero address
+        }
+        : {
+            // Do not check whether `_init` is a contract since later we check that it returns data.
+            (bool success, bytes memory data) = _init.delegatecall(_calldata);
+            require(success, "I"); // delegatecall failed
+
+            // Check that called contract returns magic value to make sure that contract logic
+            // supposed to be used as diamond cut initializer.
+            require(data.length == 32, "lp");
+            require(abi.decode(data, (bytes32)) == DIAMOND_INIT_SUCCESS_RETURN_VALUE, "lp1");
+        }
+```
+## Internal Function Only Called Once May Be Embedded to Save Gas
+In `L1ERC20Bridge.sol`, `_depositFunds()` may be embedded in `deposit()` both reduce contract size and incur less gas on related function calls:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L116
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L136-L146
+
+Similarly, `_getERC20Getters()` may be embedded inline with `_getDepositL2Calldata()`:
+
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L155
+https://github.com/code-423n4/2022-10-zksync/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol#L164
