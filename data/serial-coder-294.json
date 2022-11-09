@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "serial-coder",
+  "risk": "3",
+  "title": "Uninitializing Bridge Contracts' State Variables",
+  "issueId": 294,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/294"
+}
