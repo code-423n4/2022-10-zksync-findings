@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "HE1M",
+  "risk": "3",
+  "title": "During proposing a diamond cut, nonzero `initAddress` is not checked regarding code size",
+  "issueId": 331,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/331"
+}
