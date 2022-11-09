@@ -1,0 +1,8 @@
+{
+  "contest": 177,
+  "handle": "pashov",
+  "risk": "2",
+  "title": "Codebase uses a vulnerable OpenZeppelin library version and can result in problems when ERC165 is implemented",
+  "issueId": 344,
+  "issueUrl": "https://github.com/code-423n4/2022-10-zksync-findings/issues/344"
+}
