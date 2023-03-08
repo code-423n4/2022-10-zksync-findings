@@ -1,3 +1,11 @@
+---
+sponsor: "zkSync"
+slug: "2022-10-zksync"
+date: "2023-01-04"
+title: "zkSync v2 contest"
+findings: "https://github.com/code-423n4/2022-10-zksync-findings/issues"
+contest: 177
+---
 
 # Overview
 
